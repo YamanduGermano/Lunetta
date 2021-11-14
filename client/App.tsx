@@ -1,12 +1,13 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import Routes from './src/routes/Routes';
+import { navigationRef }from './src/routes/RootNavigation';
 
 const App : React.FC = () => (
-  <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+  <NavigationContainer ref={navigationRef}>
+    <Routes/>
+  </NavigationContainer>
 )
 
 const styles = StyleSheet.create({
