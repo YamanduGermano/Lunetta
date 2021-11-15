@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Routes from './src/routes/Routes';
 import { navigationRef }from './src/routes/RootNavigation';
 
-const App : React.FC = () => (
-  <NavigationContainer ref={navigationRef}>
-    <Routes/>
-  </NavigationContainer>
-)
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+
+import { 
+  OpenSans_700Bold,
+  OpenSans_400Regular, 
+  OpenSans_300Light 
+} from '@expo-google-fonts/open-sans';
+
+const App : React.FC = () => {
+
+  const [fontsLoaded] = useFonts({
+    OpenSans_700Bold,
+    OpenSans_400Regular, 
+    OpenSans_300Light 
+  });
+
+  if(!fontsLoaded) {
+    return (
+      <AppLoading/>
+    )
+  }
+
+  return (
+    <NavigationContainer ref={navigationRef}>
+      <Routes/>
+    </NavigationContainer>
+  )
+  
+}
 
 const styles = StyleSheet.create({
   container: {
