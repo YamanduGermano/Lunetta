@@ -8,3 +8,9 @@ export function navigate(name: keyof StackParamList, params?: undefined) {
     navigationRef.navigate(name, params);
   }
 }
+
+export function goBack(params?: undefined) {
+  if (navigationRef.isReady() && navigationRef.canGoBack()) {
+    navigationRef.goBack();
+  }
+}

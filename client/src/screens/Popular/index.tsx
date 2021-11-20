@@ -56,7 +56,7 @@ const Popular: React.FC = () => {
   )
 
   return (
-    <View>
+    <View style={{marginTop: 10}}>
       <FlatList
         data={opps}
         renderItem={renderOpportunity}

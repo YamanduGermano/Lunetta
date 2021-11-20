@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import Routes from './src/routes/Routes';
 import { navigationRef }from './src/routes/RootNavigation';
 
@@ -12,6 +12,14 @@ import {
   OpenSans_400Regular, 
   OpenSans_300Light 
 } from '@expo-google-fonts/open-sans';
+
+const myTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white',
+  }
+}
 
 const App : React.FC = () => {
 
@@ -28,7 +36,7 @@ const App : React.FC = () => {
   }
 
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer ref={navigationRef} theme={myTheme}>
       <Routes/>
     </NavigationContainer>
   )
