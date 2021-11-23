@@ -18,4 +18,6 @@ export type StackParamList = {
   Popular: undefined;
   ForYou: undefined;
   Verified: undefined;
+  Favorites: undefined;
+  Categories: undefined;
 };

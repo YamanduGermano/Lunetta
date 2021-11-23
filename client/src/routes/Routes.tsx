@@ -6,16 +6,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // TABS
-import About from '../screens/About';
 import Options from '../screens/Options';
-import Popular from '../screens/Popular';
+import Notifications from '../screens/Notifications';
 import Explore from '../screens/Explore';
+import Profile from '../screens/Profile';
 
 // EXPLORE SCREENS
+import Popular from '../screens/Popular';
 import Verified from '../screens/Verified';
 import ForYou from '../screens/ForYou';
-import Notifications from '../screens/Notifications';
-import Profile from '../screens/Profile';
+import Favorites from '../screens/Favorites';
+import Categories from '../screens/Categories';
+
+// OPTIONS SCREENS
+import About from '../screens/About';
 
 // ICONS
 import Close from '../assets/close.svg';
@@ -73,6 +77,10 @@ const Routes: React.FC = () => {
       <Stack.Screen name="Popular" component={Popular} options={{ title: "Populares" }}/>
       <Stack.Screen name="ForYou" component={ForYou} options={{ title: "Para Você" }}/>
       <Stack.Screen name="About" component={About} options={{ title: "Sobre Nós" }}/>
+      <Stack.Screen name="Favorites" component={Favorites} options={{ title: "Favoritos" }}/>
+      <Stack.Screen name="Categories" component={Categories} options={{ title: "Categorias" }}/>
+
+      
     </Stack.Navigator>
   )
 }
