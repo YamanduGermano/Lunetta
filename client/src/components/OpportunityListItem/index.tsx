@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import OppArrow from '../../assets/opparrow.svg';
+import * as RootNavigation from '../../routes/RootNavigation';
 
-type Detail = {
+
+export type Detail = {
   title: string;
   value: string;
 }
@@ -19,7 +21,7 @@ const OpportunityListItem: React.FC<OpportunityListItemProps> = ({ oppID, name, 
   return (
     <View style={styles.container}>
       <Image source={{ uri: imgUrl }} style={styles.image}/>
-      <TouchableOpacity style={styles.card} activeOpacity={0.7}>
+      <TouchableOpacity style={styles.card} activeOpacity={0.7} onPress={() => RootNavigation.navigate('Opportunity', {oppID, name, imgUrl, details})}>
         <View style={styles.oppInfo}>
           <Text style={styles.oppName}>{name}</Text>
           {details?.map((detail, idx) => (

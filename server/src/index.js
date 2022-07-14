@@ -9,9 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-dotenv.config({ path: './.env' });
+dotenv.config({ path: 'src\\.env' });
 
 const dburi = process.env.DB_URI;
+
+console.log(dburi)
 
 const PORT = 8000;
 mongoose.connect(dburi)

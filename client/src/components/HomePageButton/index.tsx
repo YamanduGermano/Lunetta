@@ -16,7 +16,7 @@ const HomePageButton: React.FC<HomePageButtonProps> = ({ title, Icon, route }) =
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={() => RootNavigation.navigate(route)} activeOpacity={0.9}>
-        <Icon width={85} height={85}/>
+        <Icon color={"white"} width={85} height={85}/>
       </TouchableOpacity>
       <Text style={styles.title}>{title}</Text>
     </View>

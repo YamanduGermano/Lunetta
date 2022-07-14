@@ -23,6 +23,7 @@ import About from '../screens/About';
 
 // ICONS
 import Close from '../assets/close.svg';
+import Opportunity from '../screens/Opportunity';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -79,6 +80,7 @@ const Routes: React.FC = () => {
       <Stack.Screen name="About" component={About} options={{ title: "Sobre Nós" }}/>
       <Stack.Screen name="Favorites" component={Favorites} options={{ title: "Favoritos" }}/>
       <Stack.Screen name="Categories" component={Categories} options={{ title: "Categorias" }}/>
+      <Stack.Screen name="Opportunity" component={Opportunity} options={{ title: "", presentation: "modal" }}/>
 
       
     </Stack.Navigator>
