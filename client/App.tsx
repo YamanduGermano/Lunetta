@@ -3,6 +3,16 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import Routes from './src/routes/Routes';
 import { navigationRef } from './src/routes/RootNavigation';
+import { initializeApp } from 'firebase/app';
+
+// Optionally import the services that you want to use
+//import {...} from "firebase/auth";
+import {getDatabase, get, ref} from "firebase/database";
+//import {...} from "firebase/firestore";
+//import {...} from "firebase/functions";
+//import {...} from "firebase/storage";
+
+
 
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -20,6 +30,20 @@ const myTheme = {
 		background: 'white',
 	},
 };
+
+// Initialize Firebase
+const firebaseConfig = {
+	apiKey: 'AIzaSyAYIS-gmYIBndISICHRiMnz8q1vca6v82I',
+	// authDomain: 'project-id.firebaseapp.com',
+	databaseURL: 'https://lunetta-60703-default-rtdb.firebaseio.com',
+	projectId: 'lunetta-60703',
+	storageBucket: 'mobileapp',
+	appId: 'app-id',
+  };
+  
+const app = initializeApp(firebaseConfig);
+export const db = getDatabase(app);
+
 
 const App: React.FC = () => {
 	const [fontsLoaded] = useFonts({
