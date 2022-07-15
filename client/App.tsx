@@ -7,12 +7,10 @@ import { initializeApp } from 'firebase/app';
 
 // Optionally import the services that you want to use
 //import {...} from "firebase/auth";
-import {getDatabase, get, ref} from "firebase/database";
+import { getDatabase, get, ref } from 'firebase/database';
 //import {...} from "firebase/firestore";
 //import {...} from "firebase/functions";
 //import {...} from "firebase/storage";
-
-
 
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -39,8 +37,8 @@ const firebaseConfig = {
 	projectId: 'lunetta-60703',
 	storageBucket: 'mobileapp',
 	appId: 'app-id',
-  };
-  
+};
+
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
