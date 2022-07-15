@@ -20,6 +20,8 @@ import Categories from '../screens/Categories';
 
 // OPTIONS SCREENS
 import About from '../screens/About';
+import Privacy from '../screens/About';
+import Licence from '../screens/About';
 
 // ICONS
 import Close from '../assets/close.svg';
@@ -155,6 +157,16 @@ const Routes: React.FC = () => {
 				name='About'
 				component={About}
 				options={{ title: 'Sobre Nós' }}
+			/>
+			<Stack.Screen
+				name='Privacy'
+				component={Privacy}
+				options={{ title: 'Privacidade' }}
+			/>
+			<Stack.Screen
+				name='Licence'
+				component={Licence}
+				options={{ title: 'Licença' }}
 			/>
 			<Stack.Screen
 				name='Favorites'

@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const About: React.FC = () => {
+const Privacy: React.FC = () => {
   return (
     <View>
-      <Text>Essa é a pagina de sobre nós.</Text>
+      <Text>Essa é a pagina de Privacidade.</Text>
     </View>
   )
 }
 
-export default About;
+export default Privacy;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import * as RootNavigation from '../../routes/RootNavigation';
 import styles from './styles';
 
@@ -13,24 +13,25 @@ const Options: React.FC = () => {
 				<Text style={styles.buttom}>Sobre Lunetta</Text>
 			</TouchableOpacity>
 
-			<TouchableOpacity
-				onPress={() => {
-					RootNavigation.navigate('About');
-				}}>
+			<TouchableOpacity onPress={() => {}}>
 				<Text style={styles.buttom}>Github</Text>
 			</TouchableOpacity>
 
 			<TouchableOpacity
 				onPress={() => {
-					RootNavigation.navigate('About');
+					RootNavigation.navigate('Privacy');
 				}}>
-				<Text style={styles.buttom}>Licença</Text>
+				<Text style={styles.buttom}>Política de Privacidade</Text>
 			</TouchableOpacity>
 
 			<TouchableOpacity
 				onPress={() => {
-					RootNavigation.navigate('About');
+					RootNavigation.navigate('Licence');
 				}}>
+				<Text style={styles.buttom}>Licença</Text>
+			</TouchableOpacity>
+
+			<TouchableOpacity onPress={() => {}}>
 				<Text style={styles.sair}>Sair da Conta</Text>
 			</TouchableOpacity>
 		</View>
