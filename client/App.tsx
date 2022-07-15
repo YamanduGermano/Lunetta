@@ -59,10 +59,10 @@ const App: React.FC = () => {
 	}
 
 	return (
-		// <NavigationContainer ref={navigationRef} theme={myTheme}>
-		// 	<Routes />
-		// </NavigationContainer>
-		<Login></Login>
+		<NavigationContainer ref={navigationRef} theme={myTheme}>
+			<Routes />
+		</NavigationContainer>
+		// <Login></Login>
 	);
 };
 
