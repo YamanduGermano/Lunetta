@@ -44,6 +44,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
 
+// Provisório aqui
+import Login from './src/screens/Login';
 
 const App: React.FC = () => {
 	const [fontsLoaded] = useFonts({
@@ -57,9 +59,10 @@ const App: React.FC = () => {
 	}
 
 	return (
-		<NavigationContainer ref={navigationRef} theme={myTheme}>
-			<Routes />
-		</NavigationContainer>
+		// <NavigationContainer ref={navigationRef} theme={myTheme}>
+		// 	<Routes />
+		// </NavigationContainer>
+		<Login></Login>
 	);
 };
 
