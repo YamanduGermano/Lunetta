@@ -21,6 +21,9 @@ const myTheme = {
 	},
 };
 
+// Provisório aqui
+import Login from './src/screens/Login';
+
 const App: React.FC = () => {
 	const [fontsLoaded] = useFonts({
 		OpenSans_700Bold,
@@ -33,9 +36,10 @@ const App: React.FC = () => {
 	}
 
 	return (
-		<NavigationContainer ref={navigationRef} theme={myTheme}>
-			<Routes />
-		</NavigationContainer>
+		// <NavigationContainer ref={navigationRef} theme={myTheme}>
+		// 	<Routes />
+		// </NavigationContainer>
+		<Login></Login>
 	);
 };
 
