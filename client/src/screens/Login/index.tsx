@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
 	View,
 	Text,
@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	StyleSheet,
 } from 'react-native';
+import AuthContext from '../../contexts/auth';
 import styles from './styles';
 
 const Login: React.FC = () => {
@@ -16,6 +17,19 @@ const Login: React.FC = () => {
 
 	const [Criar, changeCriar] = React.useState(true);
 	const [Instituicao, changeInstituicao] = React.useState(false);
+	
+	const { signIn, signUp } = useContext(AuthContext)
+
+	const handlePress = () => {
+		if(!Criar && !Instituicao) {
+			signIn(Email, Senha);
+		} 
+		else if(Criar && !Instituicao) {
+			if(Senha.trim() === ConfirmarSenha.trim()) {
+				signUp(Email, Senha, Nome);
+			}
+		}
+	}
 
 	return (
 		<View style={styles.mainview}>
@@ -65,7 +79,8 @@ const Login: React.FC = () => {
 					/>
 					<TextInput
 						style={styles.input}
-						value={Senha}
+						onChangeText={changeConfirmarSenha}
+						value={ConfirmarSenha}
 						placeholder='Confirmar senha'
 					/>
 				</View>
@@ -94,13 +109,14 @@ const Login: React.FC = () => {
 					/>
 					<TextInput
 						style={styles.input}
-						value={Senha}
+						onChangeText={changeConfirmarSenha}
+						value={ConfirmarSenha}
 						placeholder='Confirmar senha'
 					/>
 				</View>
 			</View>
 
-			<TouchableOpacity>
+			<TouchableOpacity onPress={handlePress}>
 				<Text style={styles.enviar}>{Criar ? 'Criar Conta' : 'Login'}</Text>
 			</TouchableOpacity>
 

@@ -16,7 +16,6 @@ const Popular: React.FC = () => {
 
   useEffect(() => {
     const oppsRef = ref(db, 'oports/');
-    console.log(oppsRef);
 
     const qry = query(oppsRef, orderByChild("isVerified"), equalTo(true));
 
