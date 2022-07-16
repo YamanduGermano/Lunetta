@@ -103,39 +103,39 @@ const Opportunity: React.FC = ({ route, navigation }) => {
 
         {
           oportData?.links ?
-          Object.values(oportData.links).map(item => {
+          Object.values(oportData.links).map((item, idx) => {
 
             switch (item['0']) {
               case 1:
                 return (
-                  <TouchableOpacity onPress={() => openLink(item['1'])}>
+                  <TouchableOpacity onPress={() => openLink(item['1'])} key={`link__${idx}`}>
                     <Youtube color={mainColor} width={60}/>
                   </TouchableOpacity>
                 )
               case 3:
                 return (
-                  <TouchableOpacity onPress={() => openLink(item['1'])}>
+                  <TouchableOpacity onPress={() => openLink(item['1'])} key={`link__${idx}`}>
                     <Instagram color={mainColor} width={60}/>
                   </TouchableOpacity>
                 )                
               
               case 2:
                 return (
-                  <TouchableOpacity onPress={() => openLink(item['1'])}>
+                  <TouchableOpacity onPress={() => openLink(item['1'])} key={`link__${idx}`}>
                     <Facebook color={mainColor} width={60}/>
                   </TouchableOpacity>
                 )
 
               case 9:
                 return (
-                  <TouchableOpacity onPress={() => openLink(item['1'])}>
+                  <TouchableOpacity onPress={() => openLink(item['1'])} key={`link__${idx}`}>
                     <Linkedin color={mainColor} width={60}/>
                   </TouchableOpacity>
                 )
 
               default:
                 return (
-                  <TouchableOpacity onPress={() => openLink(item['1'])}>
+                  <TouchableOpacity onPress={() => openLink(item['1'])} key={`link__${idx}`}>
                     <Generic color={mainColor} width={60}/>
                   </TouchableOpacity>
                 )

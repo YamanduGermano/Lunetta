@@ -59,8 +59,8 @@ const App: React.FC = () => {
 	return (
 		<NavigationContainer ref={navigationRef} theme={myTheme}>
 			<Routes />
+			{/* <Login/> */}
 		</NavigationContainer>
-		// <Login></Login>
 	);
 };
 

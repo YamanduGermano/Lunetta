@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, ListRenderItem } from 'react-native';
 import { db } from '../../../App';
-import { get, ref } from 'firebase/database';
+import { get, ref, query, orderByChild } from 'firebase/database';
 import OpportunityListItem, { OpportunityListItemProps } from '../../components/OpportunityListItem';
 import styles from './styles';
 
@@ -16,7 +16,9 @@ const Popular: React.FC = () => {
 
   useEffect(() => {
     const oppsRef = ref(db, 'oports/');
-    get(oppsRef)
+    const qry = query(oppsRef, orderByChild("viewcount"));
+    // console.log(oppsRef);
+    get(qry)
       .then(opps => {
         // console.log(opps);
         opps = opps.toJSON();
