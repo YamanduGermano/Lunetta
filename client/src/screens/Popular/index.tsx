@@ -31,26 +31,25 @@ const Popular: React.FC = () => {
 	const [popOpps, setPopOpps] = useState<any>(null);
 	const [isLoading, setLoading] = useState(true);
 
-	//   useEffect(() => {
-	//     const oppsRef = ref(db, 'oports/');
-	//     const qry = query(oppsRef, orderByChild("viewcount"));
-	//     // console.log(oppsRef);
-	//     get(qry)
-	//       .then(opps => {
-	//         // console.log(opps);
-	//         opps = opps.toJSON();
-	//         const oppsList: { oppID: string; name: any; imgUrl: any; }[] = [];
-	//         Object.keys(opps).forEach(elem => {
-	//           oppsList.push({
-	//             oppID: elem,
-	//             name: opps[elem].name,
-	//             imgUrl: opps[elem].pfp
-	//           })
-	//         });
-	//         setPopOpps(oppsList);
-	//         setLoading(false);
-	//       })
-	//   }, [])
+	useEffect(() => {
+		const oppsRef = ref(db, 'oports/');
+		const qry = query(oppsRef, orderByChild('viewcount'));
+		// console.log(oppsRef);
+		get(qry).then((opps) => {
+			// console.log(opps);
+			opps = opps.toJSON();
+			const oppsList: { oppID: string; name: any; imgUrl: any }[] = [];
+			Object.keys(opps).forEach((elem) => {
+				oppsList.push({
+					oppID: elem,
+					name: opps[elem].name,
+					imgUrl: opps[elem].pfp,
+				});
+			});
+			setPopOpps(oppsList);
+			setLoading(false);
+		});
+	}, []);
 
 	const renderOpportunity: ListRenderItem<OpportunityListItemProps> = ({
 		item,
