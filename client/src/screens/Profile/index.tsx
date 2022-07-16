@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import styles from './styles';
 import ExtracurricularesItem, {
 	ExtracurricularesProps,
 } from '../../components/ExtracurricularesItem';
+import AuthContext from '../../contexts/auth';
 
-let user = {
+let fakeUser = {
 	nome: 'Fulano',
 	cidade: 'Acre',
 	idade: 20,
@@ -28,29 +29,38 @@ const Extracurriculares: ExtracurricularesProps = [
 		nome: 'OBT',
 		duracao: '2022',
 		descricao: 'Olimpíada de tecnologia super diferenciada',
-		notas: 'Medalha de ouro com protótipo de App e 5o melhor video de pich!',
+		notas: 'Medalha de ouro com protótipo de App e 5o melhor video de pitch!',
 	},
 ];
 
 const Profile: React.FC = () => {
+
+	const {user} = useContext(AuthContext);
+
+
 	return (
 		<View style={styles.mainview}>
 			<View style={styles.maininfo}>
 				<View style={styles.picture} />
 				<View style={styles.textos}>
-					<Text style={styles.nome}>{user.nome}</Text>
-					<Text style={styles.cidade}>{user.cidade}</Text>
+					<Text style={styles.nome}>{user?.name}</Text>
+					<Text style={styles.cidade}>{user?.city}</Text>
 				</View>
 			</View>
 
 			<View style={styles.detalhesview}>
 				<Text style={styles.nome}>Sobre</Text>
 				<View style={styles.descricaoview}>
-					<Text style={styles.detalhes}>Idade: {user.idade}</Text>
-					<Text style={styles.detalhes}>Série: {user.serie}</Text>
-					<Text style={styles.detalhes}>Escola: {user.escola}</Text>
-					<Text></Text>
-					<Text style={styles.detalhes}>{user.descricao}</Text>
+					{
+						user?.age && <Text style={styles.detalhes}>Idade: {user?.age}</Text>
+					}
+					{
+						user?.grade && <Text style={styles.detalhes}>Série: {user?.grade}</Text>
+					}
+					{
+						user?.school && <Text style={styles.detalhes}>Escola: {user?.school}</Text>
+					}
+					<Text style={styles.detalhes}>{user?.about ? user?.about : "Olá! Sou um usuário do Lunetta!"}</Text>
 				</View>
 			</View>
 

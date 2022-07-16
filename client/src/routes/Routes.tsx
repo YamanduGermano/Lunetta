@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Icon } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Icon, Text } from 'react-native';
 import { theme } from '../global/styles/theme';
 import * as RootNavigation from './RootNavigation';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -30,6 +30,9 @@ import Explorar from '../components/HomePageNavbarIcons/Explorar/index';
 import Perfil from '../components/HomePageNavbarIcons/Perfil/index';
 import Notificacoes from '../components/HomePageNavbarIcons/Notificacoes/index';
 import Configuracoes from '../components/HomePageNavbarIcons/Configuracoes/index';
+import AuthContext from '../contexts/auth';
+import Login from '../screens/Login';
+import AppLoading from 'expo-app-loading';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -123,7 +126,18 @@ const HeaderRightButton: React.FC = () => {
 	);
 };
 const Routes: React.FC = () => {
-	return (
+
+	const { signed } = useContext(AuthContext);
+
+	if(signed === undefined) {
+		return (<Text>Carregando...</Text>)
+	}
+
+	if(!signed) {
+		return ( <Login/> );
+	}
+
+	return (	
 		<Stack.Navigator
 			initialRouteName='TabRoutes'
 			screenOptions={{

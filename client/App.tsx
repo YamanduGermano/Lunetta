@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import Routes from './src/routes/Routes';
 import { navigationRef } from './src/routes/RootNavigation';
 import { initializeApp } from 'firebase/app';
+import { AuthProvider } from './src/contexts/auth';
+
 
 // Optionally import the services that you want to use
-//import {...} from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, get, ref } from 'firebase/database';
 //import {...} from "firebase/firestore";
 //import {...} from "firebase/functions";
@@ -41,6 +43,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const db = getDatabase(app);
+export const auth = getAuth(app);
 
 // Provisório aqui
 import Login from './src/screens/Login';
@@ -55,13 +58,14 @@ const App: React.FC = () => {
 	if (!fontsLoaded) {
 		return <AppLoading />;
 	}
-
+	
 	return (
 		<NavigationContainer ref={navigationRef} theme={myTheme}>
-			<Routes />
-			{/* <Login/> */}
+			<AuthProvider>
+				<Routes/>
+			</AuthProvider>
 		</NavigationContainer>
-	);
+	)
 };
 
 const styles = StyleSheet.create({
