@@ -17,19 +17,18 @@ const Login: React.FC = () => {
 
 	const [Criar, changeCriar] = React.useState(true);
 	const [Instituicao, changeInstituicao] = React.useState(false);
-	
-	const { signIn, signUp } = useContext(AuthContext)
+
+	const { signIn, signUp } = useContext(AuthContext);
 
 	const handlePress = () => {
-		if(!Criar && !Instituicao) {
+		if (!Criar && !Instituicao) {
 			signIn(Email, Senha);
-		} 
-		else if(Criar && !Instituicao) {
-			if(Senha.trim() === ConfirmarSenha.trim()) {
+		} else if (Criar && !Instituicao) {
+			if (Senha.trim() === ConfirmarSenha.trim()) {
 				signUp(Email, Senha, Nome);
 			}
 		}
-	}
+	};
 
 	return (
 		<View style={styles.mainview}>
@@ -38,14 +37,14 @@ const Login: React.FC = () => {
 				<Text style={styles.subtitulo}>É gratuito.</Text>
 			</View>
 
-			{/* Fazer Login */}
+			{/* Fazer Login - Aluno */}
 			<View style={{ display: !Criar && !Instituicao ? 'flex' : 'none' }}>
 				<View style={styles.dadosview}>
 					<TextInput
 						style={styles.input}
 						onChangeText={changeEmail}
 						value={Email}
-						placeholder='Email'
+						placeholder='Email do aluno'
 					/>
 					<TextInput
 						style={styles.input}
@@ -56,20 +55,20 @@ const Login: React.FC = () => {
 				</View>
 			</View>
 
-			{/* Criar Conta */}
+			{/* Criar Conta - Aluno */}
 			<View style={{ display: Criar && !Instituicao ? 'flex' : 'none' }}>
 				<View style={styles.dadosview}>
 					<TextInput
 						style={styles.input}
 						onChangeText={changeNome}
 						value={Nome}
-						placeholder='Nome Completo'
+						placeholder='Nome completo do aluno'
 					/>
 					<TextInput
 						style={styles.input}
 						onChangeText={changeEmail}
 						value={Email}
-						placeholder='Email'
+						placeholder='Email do aluno'
 					/>
 					<TextInput
 						style={styles.input}
@@ -86,8 +85,8 @@ const Login: React.FC = () => {
 				</View>
 			</View>
 
-			{/* Instituição */}
-			<View style={{ display: Instituicao ? 'flex' : 'none' }}>
+			{/* Criar Conta - Instituição */}
+			<View style={{ display: Instituicao && Criar ? 'flex' : 'none' }}>
 				<View style={styles.dadosview}>
 					<TextInput
 						style={styles.input}
@@ -99,7 +98,7 @@ const Login: React.FC = () => {
 						style={styles.input}
 						onChangeText={changeEmail}
 						value={Email}
-						placeholder='Email'
+						placeholder='Email da Instituição'
 					/>
 					<TextInput
 						style={styles.input}
@@ -112,6 +111,24 @@ const Login: React.FC = () => {
 						onChangeText={changeConfirmarSenha}
 						value={ConfirmarSenha}
 						placeholder='Confirmar senha'
+					/>
+				</View>
+			</View>
+
+			{/* Fazer Login - Instituição */}
+			<View style={{ display: Instituicao && !Criar ? 'flex' : 'none' }}>
+				<View style={styles.dadosview}>
+					<TextInput
+						style={styles.input}
+						onChangeText={changeEmail}
+						value={Email}
+						placeholder='Email da Instituição'
+					/>
+					<TextInput
+						style={styles.input}
+						onChangeText={changeSenha}
+						value={Senha}
+						placeholder='Senha'
 					/>
 				</View>
 			</View>
