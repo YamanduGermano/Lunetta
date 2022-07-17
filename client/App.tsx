@@ -45,7 +45,7 @@ export const db = getDatabase(app);
 export const auth = getAuth(app);
 
 // Provisório aqui
-import Provisorio from './src/screens/Dashboard';
+import Provisorio from './src/routes/setup.routes';
 
 const App: React.FC = () => {
 	const [fontsLoaded] = useFonts({
@@ -59,12 +59,12 @@ const App: React.FC = () => {
 	}
 
 	return (
-		<NavigationContainer ref={navigationRef} theme={myTheme}>
-			<AuthProvider>
-				<Routes />
-			</AuthProvider>
-		</NavigationContainer>
-		// <Provisorio />
+		// <NavigationContainer ref={navigationRef} theme={myTheme}>
+		// 	<AuthProvider>
+		// 		<Routes />
+		// 	</AuthProvider>
+		// </NavigationContainer>
+		<Provisorio />
 	);
 };
 
