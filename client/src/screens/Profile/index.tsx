@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Image } from 'react-native';
 import styles from './styles';
 import ExtracurricularesItem, {
 	ExtracurricularesProps,
 } from '../../components/ExtracurricularesItem';
 import AuthContext from '../../contexts/auth';
+import { theme } from '../../global/styles/theme';
 
 const Extracurriculares: ExtracurricularesProps = [
 	{
@@ -31,7 +32,12 @@ const Profile: React.FC = () => {
 	return (
 		<View style={styles.mainview}>
 			<View style={styles.maininfo}>
-				<View style={styles.picture} />
+				<View style={styles.picture}>
+					<Image
+						style={{width: '100%', height: '100%', borderWidth: 5, borderColor: theme.colors.primary, borderRadius: 1000}}
+						source={require('../../assets/pfp1.png')}
+					/>
+				</View>
 				<View style={styles.textos}>
 					<Text style={styles.nome}>{user?.name}</Text>
 					<Text style={styles.cidade}>{user?.city} - {user?.uf}</Text>
