@@ -6,16 +6,6 @@ import ExtracurricularesItem, {
 } from '../../components/ExtracurricularesItem';
 import AuthContext from '../../contexts/auth';
 
-let fakeUser = {
-	nome: 'Fulano',
-	cidade: 'Acre',
-	idade: 20,
-	serie: '3o Ano',
-	escola: 'Colégio pH Freguesia',
-	descricao:
-		'Gosto de programação e criei um canal no youtube chamado Codae pra ensinar a outras pessoas :)',
-};
-
 const Extracurriculares: ExtracurricularesProps = [
 	{
 		key: 1,
@@ -44,7 +34,7 @@ const Profile: React.FC = () => {
 				<View style={styles.picture} />
 				<View style={styles.textos}>
 					<Text style={styles.nome}>{user?.name}</Text>
-					<Text style={styles.cidade}>{user?.city}</Text>
+					<Text style={styles.cidade}>{user?.city} - {user?.uf}</Text>
 				</View>
 			</View>
 
@@ -55,7 +45,7 @@ const Profile: React.FC = () => {
 						user?.age && <Text style={styles.detalhes}>Idade: {user?.age}</Text>
 					}
 					{
-						user?.grade && <Text style={styles.detalhes}>Série: {user?.grade}</Text>
+						user?.serie && <Text style={styles.detalhes}>Série: {user?.serie}</Text>
 					}
 					{
 						user?.school && <Text style={styles.detalhes}>Escola: {user?.school}</Text>

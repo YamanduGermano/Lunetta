@@ -33,6 +33,7 @@ import Configuracoes from '../components/HomePageNavbarIcons/Configuracoes/index
 import AuthContext from '../contexts/auth';
 import Login from '../screens/Login';
 import AppLoading from 'expo-app-loading';
+import SetupRoutes from './setup.routes';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -125,80 +126,80 @@ const HeaderRightButton: React.FC = () => {
 		</View>
 	);
 };
+
 const Routes: React.FC = () => {
 
-	const { signed } = useContext(AuthContext);
-
-	if(signed === undefined) {
-		return (<Text>Carregando...</Text>)
-	}
+	const { signed, user } = useContext(AuthContext);
 
 	if(!signed) {
-		return ( <Login/> );
+		return (<Login/>);
+	} else if(user?.isNew) {
+		return (<SetupRoutes/>);
+	} else {
+		return (	
+			<Stack.Navigator
+				initialRouteName='TabRoutes'
+				screenOptions={{
+					headerLeft: () => <HeaderLeftButton />,
+					headerRight: () => <HeaderRightButton />,
+					headerTitleStyle: header.headerTitleStyle,
+					headerShadowVisible: header.headerShadowVisible,
+				}}>
+				<Stack.Screen
+					name='TabRoutes'
+					component={TabRoutes}
+					options={{
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen
+					name='Verified'
+					component={Verified}
+					options={{ title: 'Verificados' }}
+				/>
+				<Stack.Screen
+					name='Popular'
+					component={Popular}
+					options={{ title: 'Populares' }}
+				/>
+				<Stack.Screen
+					name='ForYou'
+					component={ForYou}
+					options={{ title: 'Para Você' }}
+				/>
+				<Stack.Screen
+					name='About'
+					component={About}
+					options={{ title: 'Sobre Nós' }}
+				/>
+				<Stack.Screen
+					name='Privacy'
+					component={Privacy}
+					options={{ title: 'Privacidade' }}
+				/>
+				<Stack.Screen
+					name='Licence'
+					component={Licence}
+					options={{ title: 'Licença' }}
+				/>
+				<Stack.Screen
+					name='Favorites'
+					component={Favorites}
+					options={{ title: 'Favoritos' }}
+				/>
+				<Stack.Screen
+					name='Categories'
+					component={Categories}
+					options={{ title: 'Categorias' }}
+				/>
+				<Stack.Screen 
+					name="Opportunity" 
+					component={Opportunity} 
+					options={{ title: "", presentation: "modal" }}/>
+			</Stack.Navigator>
+		);
 	}
-
-	return (	
-		<Stack.Navigator
-			initialRouteName='TabRoutes'
-			screenOptions={{
-				headerLeft: () => <HeaderLeftButton />,
-				headerRight: () => <HeaderRightButton />,
-				headerTitleStyle: header.headerTitleStyle,
-				headerShadowVisible: header.headerShadowVisible,
-			}}>
-			<Stack.Screen
-				name='TabRoutes'
-				component={TabRoutes}
-				options={{
-					headerShown: false,
-				}}
-			/>
-			<Stack.Screen
-				name='Verified'
-				component={Verified}
-				options={{ title: 'Verificados' }}
-			/>
-			<Stack.Screen
-				name='Popular'
-				component={Popular}
-				options={{ title: 'Populares' }}
-			/>
-			<Stack.Screen
-				name='ForYou'
-				component={ForYou}
-				options={{ title: 'Para Você' }}
-			/>
-			<Stack.Screen
-				name='About'
-				component={About}
-				options={{ title: 'Sobre Nós' }}
-			/>
-			<Stack.Screen
-				name='Privacy'
-				component={Privacy}
-				options={{ title: 'Privacidade' }}
-			/>
-			<Stack.Screen
-				name='Licence'
-				component={Licence}
-				options={{ title: 'Licença' }}
-			/>
-			<Stack.Screen
-				name='Favorites'
-				component={Favorites}
-				options={{ title: 'Favoritos' }}
-			/>
-			<Stack.Screen
-				name='Categories'
-				component={Categories}
-				options={{ title: 'Categorias' }}
-			/>
-			<Stack.Screen 
-				name="Opportunity" 
-				component={Opportunity} 
-				options={{ title: "", presentation: "modal" }}/>
-		</Stack.Navigator>
-	);
+	
 };
 
 export default Routes;
