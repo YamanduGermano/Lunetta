@@ -7,25 +7,7 @@ import OpportunityListItem, {
 } from '../../components/OpportunityListItem';
 import styles from './styles';
 import LottieView from 'lottie-react-native';
-
-const Loading: React.FC = () => {
-	return (
-		<View
-			style={{
-				width: '100%',
-				height: '100%',
-				justifyContent: 'center',
-				alignItems: 'center',
-			}}>
-			<LottieView
-				style={{ width: '80%' }}
-				source={require('../../assets/Animations/Loading.json')}
-				autoPlay={true}
-				loop={true}
-			/>
-		</View>
-	);
-};
+import { BigLoading } from '../../components/LoadingAnimations';
 
 const Popular: React.FC = () => {
 	const [popOpps, setPopOpps] = useState<any>(null);
@@ -57,7 +39,7 @@ const Popular: React.FC = () => {
 
 	return (
 		<View style={{ marginTop: 10 }}>
-			{isLoading && <Loading />}
+			{isLoading && <BigLoading />}
 			{!isLoading && popOpps === null ? (
 				<Text>Achei nada...</Text>
 			) : (
