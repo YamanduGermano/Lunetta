@@ -37,6 +37,7 @@ const SetupRoutes: React.FC = () => {
 			updates['/interesses'] = interesses;
 			updates['/extracurriculares'] = extracurriculares;
 			updates['/isNew'] = false;
+            updates['/serie'] = studyLevel;
 
 			return update(dbRef, updates);
 		}

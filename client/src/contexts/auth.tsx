@@ -50,9 +50,11 @@ export const AuthProvider: React.FC = ({ children }) => {
 	const signUp = async (email: string, password: string, name: string) => {
 		fireauth
 			.createUserWithEmailAndPassword(auth, email.trim(), password.trim())
-			.then((userData) => {
+			.then(async (userData) => {
+        console.log("tentando salvar");
+
 				const dbRef = ref(db, '/users/' + userData.user.uid);
-				set(dbRef, {
+				await set(dbRef, {
 					name,
 					about: 'Olá! Sou um usuário do Lunetta!',
 					pfp: 1,
@@ -60,6 +62,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 					isNew: true,
 				});
 			})
+      .then(() => {
+        console.log("tentando logar");
+        // signIn(email.trim(), password.trim());
+      })
 			.catch((err) => console.log(err));
 	};
 
@@ -71,12 +77,14 @@ export const AuthProvider: React.FC = ({ children }) => {
 		});
 	};
 
-	onAuthStateChanged(auth, (userData) => {
+	onAuthStateChanged(auth, async (userData) => {
+    console.log("mudou estado");
+    console.log(userData);
 		if (userData) {
 			// setUser(userData);
 			if (user !== null) return;
 			const dbRef = ref(db, '/users/' + userData.uid);
-			get(dbRef).then((data) => {
+			await get(dbRef).then((data) => {
 				setUser(data.val());
 			});
 		} else {
