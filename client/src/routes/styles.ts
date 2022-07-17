@@ -3,6 +3,7 @@ import { theme } from '../global/styles/theme';
 
 const Styles = StyleSheet.create({
 	titulo: { fontSize: 40, fontFamily: theme.fonts.bold, marginBottom: 10 },
+	subtitulo: { fontSize: 20, fontFamily: theme.fonts.bold, marginBottom: 10 },
 	texto: { fontSize: 20, fontFamily: theme.fonts.light, marginTop: 10 },
 	info: { fontSize: 17, fontFamily: theme.fonts.light, color: '#7e7e7e' },
 	dadosview: { marginTop: 50, marginBottom: 30 },

@@ -70,9 +70,10 @@ const SetupRoutes: React.FC = () => {
 								justifyContent: 'center',
 								alignItems: 'center',
 								marginVertical: 30,
+								width: '100%',
 							}}>
 							<TouchableOpacity
-								style={[Styles.enviar, { width: '100%' }]}
+								style={[Styles.enviar, { width: '80%' }]}
 								onPress={() => setCurrScreen('firstly')}>
 								<Text
 									style={{
@@ -120,7 +121,7 @@ const SetupRoutes: React.FC = () => {
 									style={{
 										width: 75,
 										height: 75,
-										borderColor: '#2095FF',
+										borderColor: '#85B6FF',
 										borderRadius: 1000,
 										borderWidth: pfp === 1 ? 5 : 0,
 										marginHorizontal: 5,
@@ -134,7 +135,7 @@ const SetupRoutes: React.FC = () => {
 									style={{
 										width: 75,
 										height: 75,
-										borderColor: '#2095FF',
+										borderColor: '#FFC98B',
 										borderRadius: 1000,
 										borderWidth: pfp === 2 ? 5 : 0,
 										marginHorizontal: 5,
@@ -148,7 +149,7 @@ const SetupRoutes: React.FC = () => {
 									style={{
 										width: 75,
 										height: 75,
-										borderColor: '#2095FF',
+										borderColor: '#E5C1CD',
 										borderRadius: 1000,
 										borderWidth: pfp === 3 ? 5 : 0,
 										marginHorizontal: 5,
@@ -162,7 +163,7 @@ const SetupRoutes: React.FC = () => {
 									style={{
 										width: 75,
 										height: 75,
-										borderColor: '#2095FF',
+										borderColor: '#FFB284',
 										borderRadius: 1000,
 										borderWidth: pfp === 4 ? 5 : 0,
 										marginHorizontal: 5,
@@ -283,23 +284,23 @@ const SetupRoutes: React.FC = () => {
 		return (
 			<SafeAreaView>
 				<View style={{ marginTop: 50 }}>
-					<Text>Por fim...</Text>
-					<Text>
+					<Text style={Styles.titulo}>Por fim...</Text>
+					<Text style={Styles.texto}>
 						Alguns processos seletivos pedem para que você fale um pouco sobre
 						você e as atividades que você já fez. Lembrar de todas as coisas
 						pode ser trabalhoso, então você pode deixar tudo salvo aqui no
 						Lunetta.
 					</Text>
-					<Text>Suas Atividades</Text>
+					<Text style={Styles.subtitulo}>Suas Atividades</Text>
 					{/* essa lista de extracurriculares vai ser chatinha pra fazer... */}
 					<View>{/* lista de ECs */}</View>
 
-					<Text>
+					<Text style={Styles.texto}>
 						Agora, selecione quaisquer temas pelos quais você se interessa! Nós
 						vamos escolher oportunidades que se encaixam nessas categorias,
 						especialmente para você.
 					</Text>
-					<Text>
+					<Text style={Styles.info}>
 						Fique tranquilo! Você pode alterar isso depois nas configurações do
 						seu perfil.
 					</Text>
