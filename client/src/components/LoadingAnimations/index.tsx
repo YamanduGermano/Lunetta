@@ -1,8 +1,8 @@
-import React from "react";
-import { View } from "react-native";
+import React from 'react';
+import { View } from 'react-native';
 import LottieView from 'lottie-react-native';
 
-export const BigLoading: React.FC = () => {
+const BigLoading: React.FC = () => {
 	return (
 		<View
 			style={{
@@ -20,3 +20,5 @@ export const BigLoading: React.FC = () => {
 		</View>
 	);
 };
+
+export default BigLoading;

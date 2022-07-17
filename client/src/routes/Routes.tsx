@@ -35,6 +35,8 @@ import Login from '../screens/Login';
 import AppLoading from 'expo-app-loading';
 import SetupRoutes from './setup.routes';
 
+import Loading from '../components/LoadingAnimations';
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -128,15 +130,17 @@ const HeaderRightButton: React.FC = () => {
 };
 
 const Routes: React.FC = () => {
-
 	const { signed, user } = useContext(AuthContext);
 
-	if(!signed) {
-		return (<Login/>);
-	} else if(user?.isNew) {
-		return (<SetupRoutes/>);
+	if (signed === undefined) {
+		return <Loading />;
+	}
+	if (!signed) {
+		return <Login />;
+	} else if (user?.isNew) {
+		return <SetupRoutes />;
 	} else {
-		return (	
+		return (
 			<Stack.Navigator
 				initialRouteName='TabRoutes'
 				screenOptions={{
@@ -192,14 +196,14 @@ const Routes: React.FC = () => {
 					component={Categories}
 					options={{ title: 'Categorias' }}
 				/>
-				<Stack.Screen 
-					name="Opportunity" 
-					component={Opportunity} 
-					options={{ title: "", presentation: "modal" }}/>
+				<Stack.Screen
+					name='Opportunity'
+					component={Opportunity}
+					options={{ title: '', presentation: 'modal' }}
+				/>
 			</Stack.Navigator>
 		);
 	}
-	
 };
 
 export default Routes;
