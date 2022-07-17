@@ -34,6 +34,9 @@ import AuthContext from '../contexts/auth';
 import Login from '../screens/Login';
 import AppLoading from 'expo-app-loading';
 
+import Loading from '../components/LoadingAnimations';
+
+
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
@@ -130,7 +133,7 @@ const Routes: React.FC = () => {
 	const { signed } = useContext(AuthContext);
 
 	if(signed === undefined) {
-		return (<Text>Carregando...</Text>)
+		return (<Loading/>)
 	}
 
 	if(!signed) {

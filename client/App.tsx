@@ -6,9 +6,8 @@ import { navigationRef } from './src/routes/RootNavigation';
 import { initializeApp } from 'firebase/app';
 import { AuthProvider } from './src/contexts/auth';
 
-
 // Optionally import the services that you want to use
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase, get, ref } from 'firebase/database';
 //import {...} from "firebase/firestore";
 //import {...} from "firebase/functions";
@@ -46,7 +45,7 @@ export const db = getDatabase(app);
 export const auth = getAuth(app);
 
 // Provisório aqui
-import Login from './src/screens/Login';
+import Provisorio from './src/screens/Dashboard';
 
 const App: React.FC = () => {
 	const [fontsLoaded] = useFonts({
@@ -58,14 +57,15 @@ const App: React.FC = () => {
 	if (!fontsLoaded) {
 		return <AppLoading />;
 	}
-	
+
 	return (
 		<NavigationContainer ref={navigationRef} theme={myTheme}>
 			<AuthProvider>
-				<Routes/>
+				<Routes />
 			</AuthProvider>
 		</NavigationContainer>
-	)
+		// <Provisorio />
+	);
 };
 
 const styles = StyleSheet.create({
