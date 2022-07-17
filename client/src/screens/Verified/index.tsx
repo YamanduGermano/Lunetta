@@ -4,7 +4,7 @@ import { db } from '../../../App';
 import { equalTo, get, orderByChild, query, ref } from 'firebase/database';
 import OpportunityListItem, { OpportunityListItemProps } from '../../components/OpportunityListItem';
 import styles from './styles';
-import { BigLoading } from '../../components/LoadingAnimations';
+import BigLoading from '../../components/LoadingAnimations';
 
 const Loading: React.FC = () => {
   return (<Text>Carregando...</Text>);

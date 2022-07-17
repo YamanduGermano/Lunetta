@@ -17,13 +17,17 @@ const Login: React.FC = () => {
 	const [Senha, changeSenha] = React.useState('');
 	const [ConfirmarSenha, changeConfirmarSenha] = React.useState('');
 
-	const [Criar, changeCriar] = React.useState(true);
+	const [Criar, changeCriar] = React.useState(false);
 	const [Instituicao, changeInstituicao] = React.useState(false);
 
 	const { signIn, signUp } = useContext(AuthContext);
+
+	const [LoadingAnim, changeLoadingAnim] = React.useState(true);
 	const { signed } = useContext(AuthContext);
+	setTimeout(() => changeLoadingAnim(signed), 3000);
 
 	const handlePress = () => {
+		changeLoadingAnim(true);
 		if (!Criar && !Instituicao) {
 			signIn(Email, Senha);
 		} else if (Criar && !Instituicao) {
@@ -31,11 +35,13 @@ const Login: React.FC = () => {
 				signUp(Email, Senha, Nome);
 			}
 		}
+		setTimeout(() => changeLoadingAnim(false), 10000);
 	};
 
 	return (
 		<View>
-			<View style={[styles.mainview, { display: !signed ? 'none' : 'flex' }]}>
+			<View
+				style={[styles.mainview, { display: LoadingAnim ? 'none' : 'flex' }]}>
 				<View>
 					<Text style={styles.titulo}>Conecte-se!</Text>
 					<Text style={styles.subtitulo}>É gratuito.</Text>
@@ -169,7 +175,7 @@ const Login: React.FC = () => {
 					</Text>
 				</TouchableOpacity>
 			</View>
-			<View style={{ display: signed ? 'none' : 'flex' }}>
+			<View style={{ display: !LoadingAnim ? 'none' : 'flex' }}>
 				<Loading />
 			</View>
 		</View>

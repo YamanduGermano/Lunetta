@@ -7,7 +7,7 @@ import OpportunityListItem, {
 } from '../../components/OpportunityListItem';
 import styles from './styles';
 import LottieView from 'lottie-react-native';
-import { BigLoading } from '../../components/LoadingAnimations';
+import BigLoading from '../../components/LoadingAnimations';
 
 const Popular: React.FC = () => {
 	const [popOpps, setPopOpps] = useState<any>(null);
