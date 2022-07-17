@@ -51,6 +51,7 @@ const Login: React.FC = () => {
 						onChangeText={changeSenha}
 						value={Senha}
 						placeholder='Senha'
+						secureTextEntry={true}
 					/>
 				</View>
 			</View>
@@ -75,12 +76,14 @@ const Login: React.FC = () => {
 						onChangeText={changeSenha}
 						value={Senha}
 						placeholder='Senha'
+						secureTextEntry={true}
 					/>
 					<TextInput
 						style={styles.input}
 						onChangeText={changeConfirmarSenha}
 						value={ConfirmarSenha}
 						placeholder='Confirmar senha'
+						secureTextEntry={true}
 					/>
 				</View>
 			</View>
@@ -105,12 +108,14 @@ const Login: React.FC = () => {
 						onChangeText={changeSenha}
 						value={Senha}
 						placeholder='Senha'
+						secureTextEntry={true}
 					/>
 					<TextInput
 						style={styles.input}
 						onChangeText={changeConfirmarSenha}
 						value={ConfirmarSenha}
 						placeholder='Confirmar senha'
+						secureTextEntry={true}
 					/>
 				</View>
 			</View>
@@ -123,12 +128,14 @@ const Login: React.FC = () => {
 						onChangeText={changeEmail}
 						value={Email}
 						placeholder='Email da Instituição'
+						textContentType='emailAddress'
 					/>
 					<TextInput
 						style={styles.input}
 						onChangeText={changeSenha}
 						value={Senha}
 						placeholder='Senha'
+						secureTextEntry={true}
 					/>
 				</View>
 			</View>
