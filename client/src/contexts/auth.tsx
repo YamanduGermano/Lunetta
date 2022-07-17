@@ -4,9 +4,8 @@ import { auth, db } from "../../App";
 
 import *  as fireauth from 'firebase/auth'
 import { get, ref, set } from "firebase/database";
-import { clockRunning } from "react-native-reanimated";
 
-interface UserData {
+export interface UserData {
   name: string;
   email: string;
   city?: string;
@@ -18,6 +17,8 @@ interface UserData {
   pfp: number;
   isInstit?: boolean;
   interesses?: object;
+  uid: string;
+  isNew: boolean;
 }
 
 interface AuthContextData {
@@ -25,7 +26,8 @@ interface AuthContextData {
   user: UserData | null,
   signOut(): void,
   signIn(email: string, password: string): Promise<void>,
-  signUp(email: string, password: string, name: string): Promise<void>
+  signUp(email: string, password: string, name: string): Promise<void>,
+  updateUserInfo(): void,
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -52,10 +54,21 @@ export const AuthProvider: React.FC = ({ children }) => {
         set(dbRef, {
           name,
           about: "Olá! Sou um usuário do Lunetta!",
-          pfp: 1
+          pfp: 1,
+          uid: userData.user.uid,
+          isNew: true,
         });
       })
       .catch(err => console.log(err));
+  }
+
+  const updateUserInfo = async () => {
+    if(!user) return;
+    const dbRef = ref(db, '/users/'+user?.uid);
+        get(dbRef)
+          .then(data => {
+            setUser(data.val());
+          })
   }
 
   onAuthStateChanged(auth, (userData) => {
@@ -73,7 +86,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 	});
 
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signOut, signIn, signUp}}>
+    <AuthContext.Provider value={{ signed: !!user, user, signOut, signIn, signUp, updateUserInfo}}>
       {children}
     </AuthContext.Provider>
   )    
