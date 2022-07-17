@@ -12,6 +12,10 @@ import { getDatabase, get, ref } from 'firebase/database';
 //import {...} from "firebase/firestore";
 //import {...} from "firebase/functions";
 //import {...} from "firebase/storage";
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer']);
+LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
 
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
@@ -59,12 +63,12 @@ const App: React.FC = () => {
 	}
 
 	return (
-		// <NavigationContainer ref={navigationRef} theme={myTheme}>
-		// 	<AuthProvider>
-		// 		<Routes />
-		// 	</AuthProvider>
-		// </NavigationContainer>
-		<Provisorio />
+		<NavigationContainer ref={navigationRef} theme={myTheme}>
+			<AuthProvider>
+				<Routes />
+			</AuthProvider>
+		</NavigationContainer>
+		// <Provisorio />
 	);
 };
 
