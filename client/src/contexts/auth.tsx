@@ -19,6 +19,7 @@ export interface UserData {
 	interesses?: object;
 	uid: string;
 	isNew: boolean;
+  favorites?: string[];
 }
 
 interface AuthContextData {
@@ -28,6 +29,7 @@ interface AuthContextData {
 	signIn(email: string, password: string): Promise<void>;
 	signUp(email: string, password: string, name: string): Promise<void>;
 	updateUserInfo(): void;
+  fetchUserFavorites(): Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -77,6 +79,18 @@ export const AuthProvider: React.FC = ({ children }) => {
 		});
 	};
 
+  const fetchUserFavorites = async () => {
+    if(!user) return;
+    const dbRef = ref(db, '/users/'+user.uid+'/favorites');
+    return await get(dbRef)
+      .then(data => {
+        const aux = user;
+        aux.favorites = data.val();
+        setUser(aux);
+      })
+    
+  }
+
 	onAuthStateChanged(auth, async (userData) => {
     console.log("mudou estado");
     console.log(userData);
@@ -94,7 +108,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ signed: !!user, user, signOut, signIn, signUp, updateUserInfo }}>
+			value={{ signed: !!user, user, signOut, signIn, signUp, updateUserInfo, fetchUserFavorites }}>
 			{children}
 		</AuthContext.Provider>
 	);

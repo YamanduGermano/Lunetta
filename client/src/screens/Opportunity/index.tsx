@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { View, Text, Button, TouchableOpacity, Image, Linking } from 'react-native';
 import HomePageButton from '../../components/HomePageButton';
 import { db } from '../../../App';
-import { get, ref } from 'firebase/database';
+import { get, ref, set } from 'firebase/database';
 
 import * as RootNavigation from '../../routes/RootNavigation';
 
@@ -22,6 +22,7 @@ import Youtube from '../../assets/YoutubeIcon.svg';
 
 import { HomePageButtonProps } from '../../components/HomePageButton';
 import styles from './styles';
+import AuthContext from '../../contexts/auth';
 
 const getOpportunityData = async (oppID: string) => {
   const oppRef = ref(db, '/oports/' + oppID);
@@ -45,10 +46,13 @@ const openLink = (URL: string) => {
   })
 }
 
+
+
 const Opportunity: React.FC = ({ route, navigation }) => {
 
   const [oportData, setOportData] = useState<null|OportData>(null); 
   const [isFavorite, setIsFavorite] = useState(false);
+  const { user, fetchUserFavorites } = useContext(AuthContext);
  
   const mainColor = ( oportData ? oportData.color[0] : 'transparent');
   const secColor = ( oportData ? oportData.color[1] : 'transparent');
@@ -58,7 +62,41 @@ const Opportunity: React.FC = ({ route, navigation }) => {
       .then((data) => {
         setOportData(data as OportData);
       })
+
+    fetchUserFavorites()
+      .then(() => {
+        console.log(user?.favorites);
+        setIsFavorite(Boolean(user?.favorites?.includes(route.params.oppID)));
+      })
+    
   }, [])
+
+  const toggleFavorite = async (oportID: string) => {
+    if(!user) return;
+    setIsFavorite(!isFavorite);
+    const dbRef = ref(db, '/users/'+user?.uid+'/favorites');
+    get(dbRef)
+      .then(async (data) => {
+        let favs:string[] = data.val();
+        if(favs === null) {
+          favs = [];
+        }
+        
+        if(favs.includes(oportID)) {
+          favs = favs.filter(oport => oport != oportID);
+        } else {
+          favs.push(oportID);
+        }
+        
+        return favs;
+      })
+      .then(async (favList) => {
+        await set(dbRef, favList);
+        await fetchUserFavorites();
+      })
+  }
+
+  
   
   return (
     <View style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'scroll'}}>
@@ -88,7 +126,7 @@ const Opportunity: React.FC = ({ route, navigation }) => {
           }</Text>
         </View>
 
-        <TouchableOpacity style={{paddingRight: 10}} onPress={() => { setIsFavorite(!isFavorite) }}>
+        <TouchableOpacity style={{paddingRight: 10}} onPress={() => { toggleFavorite(route.params.oppID) }}>
           <Heart color={( isFavorite ? mainColor : '#646464')} width={40}/>
         </TouchableOpacity> 
       </View>
